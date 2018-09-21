@@ -17,10 +17,10 @@ RUN mvn clean install --batch-mode -Plight-test
 
 # The image is based on https://github.com/jenkinsci/docker/tree/java11
 # All documentation is applicable
-FROM jenkins/jenkins-experimental:2.138.1-jdk11
+FROM jenkins/jenkins-experimental:2.138.1
 
 LABEL Description="This is an experimental image for Jenkins on Java 11"
 
 COPY --from=builder /jenkins/src/war/target/jenkins.war /usr/share/jenkins/jenkins.war
-COPY docker/jenkins2.sh /usr/local/bin/jenkins2.sh
-ENTRYPOINT ["tini", "--", "/usr/local/bin/jenkins2.sh"]
+#COPY docker/jenkins2.sh /usr/local/bin/jenkins2.sh
+ENTRYPOINT ["tini", "--", "/usr/local/bin/jenkins.sh"]
